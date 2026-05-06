@@ -1,9 +1,9 @@
 extends Area2D
 
 # Velocidad a la que puede moverse el jugador
-@export var speed = 400
+@export var speed: int = 400
 # Variable para guardar el tamaño de la ventana
-var screen_size
+var screen_size: Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,7 +19,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var velocity = Vector2.ZERO # El vector de movimiento del player
+	var velocity: Vector2 = Vector2.ZERO # El vector de movimiento del player
 	
 	# Capturar entradas de usuario
 	if Input.is_action_pressed("MoveRight"):
