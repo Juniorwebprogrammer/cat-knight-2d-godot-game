@@ -1,14 +1,47 @@
-[gd_scene load_steps=30 format=3 uid="uid://csybhky8dq2au"]
+[gd_scene load_steps=39 format=3 uid="uid://csybhky8dq2au"]
 
 [ext_resource type="Script" path="res://scripts/player/player.gd" id="1_40wrj"]
 [ext_resource type="Shader" path="res://scenes/shader/player/player.gdshader" id="1_jgoej"]
 [ext_resource type="Texture2D" uid="uid://yf3p0jbb3bqo" path="res://assets/characters/Meow Knight/Meow-Knight_Idle.png" id="2_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://cor55ph1tnsbi" path="res://assets/characters/Meow Knight/Meow-Knight_Dodge.png" id="3_2w5qp"]
 [ext_resource type="Texture2D" uid="uid://bl787wv4x8jtu" path="res://assets/characters/Meow Knight/Meow-Knight_Jump.png" id="3_dqkch"]
 [ext_resource type="Texture2D" uid="uid://ceuusg3vb3nmx" path="res://assets/characters/Meow Knight/Meow-Knight_Run.png" id="3_qhqgy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dqkch"]
 shader = ExtResource("1_jgoej")
 shader_parameter/color_tinte = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uaflw"]
+atlas = ExtResource("3_2w5qp")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ggjxb"]
+atlas = ExtResource("3_2w5qp")
+region = Rect2(0, 21, 16, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_slg0j"]
+atlas = ExtResource("3_2w5qp")
+region = Rect2(0, 46, 16, 23)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lnmaj"]
+atlas = ExtResource("3_2w5qp")
+region = Rect2(16, 80, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6scxx"]
+atlas = ExtResource("3_2w5qp")
+region = Rect2(0, 100, 16, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3b4d6"]
+atlas = ExtResource("3_2w5qp")
+region = Rect2(0, 126, 16, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_whxav"]
+atlas = ExtResource("3_2w5qp")
+region = Rect2(0, 154, 16, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55pxw"]
+atlas = ExtResource("3_2w5qp")
+region = Rect2(0, 176, 16, 22)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2els"]
 atlas = ExtResource("2_qhqgy")
@@ -98,6 +131,35 @@ region = Rect2(0, 214, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_uaflw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ggjxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_slg0j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lnmaj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6scxx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3b4d6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_whxav")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55pxw")
+}],
+"loop": true,
+"name": &"dodge",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_g2els")
 }, {
 "duration": 1.0,
@@ -176,10 +238,10 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dqkch"]
-radius = 3.0
-height = 12.0
+radius = 12.0
+height = 52.0
 
-[node name="player" type="Area2D"]
+[node name="player" type="CharacterBody2D"]
 script = ExtResource("1_40wrj")
 metadata/_edit_group_ = true
 
@@ -188,8 +250,8 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_dqkch")
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_qlg0r")
-animation = &"idle"
-frame_progress = 0.926041
+animation = &"dodge"
+frame_progress = 0.583351
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_dqkch")
