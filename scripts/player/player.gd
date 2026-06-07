@@ -16,6 +16,9 @@ extends CharacterBody2D
 func _ready() -> void:
 	$AnimatedSprite2D.scale = Vector2(3, 3)
 	state_machine.init(self, "Idle")
+	# Logs de verificación
+	print(">>> AttackHitbox layer: ", attack_hitbox.collision_layer)
+	print(">>> AttackHitbox mask: ", attack_hitbox.collision_mask)
 
 func _physics_process(delta: float) -> void:
 	state_machine.update(delta)

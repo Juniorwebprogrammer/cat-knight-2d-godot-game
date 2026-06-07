@@ -68,6 +68,11 @@ func _on_frame_changed() -> void:
 
 func _activate_hitbox() -> void:
 	var hitbox = player.get_node("AttackHitbox")
+	# Voltear la hitbox según la dirección del sprite
+	if player.animated_sprite.flip_h:
+		hitbox.position.x = -60  # Izquierda
+	else:
+		hitbox.position.x = 60   # Derecha
 	hitbox.monitoring = true
 	hitbox.monitorable = true
 	hitbox.set_meta("damage", _get_damage())

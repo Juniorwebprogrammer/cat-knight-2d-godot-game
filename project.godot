@@ -43,6 +43,11 @@ Attack1={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="player"
+2d_render/layer_2="enemy"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
