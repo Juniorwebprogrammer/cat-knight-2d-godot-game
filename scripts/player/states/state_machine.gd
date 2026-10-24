@@ -6,7 +6,6 @@ var current_state: State
 var states: Dictionary = {}
 
 func _ready() -> void:
-	# Registra todos los estados hijos automáticamente
 	for child in get_children():
 		if child is State:
 			states[child.name] = child

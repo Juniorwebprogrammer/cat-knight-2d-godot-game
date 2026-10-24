@@ -1,16 +1,21 @@
-[gd_scene load_steps=4 format=3 uid="uid://dxs3fkohq81v"]
+[gd_scene format=3 uid="uid://dxs3fkohq81v"]
 
 [ext_resource type="PackedScene" uid="uid://csybhky8dq2au" path="res://scenes/player.tscn" id="1_alwb6"]
 [ext_resource type="PackedScene" uid="uid://b2jqsswb6ovw" path="res://scenes/ground.tscn" id="2_0as0r"]
 [ext_resource type="PackedScene" uid="uid://brirxpefc056b" path="res://scenes/enemy.tscn" id="3_83fsk"]
+[ext_resource type="PackedScene" uid="uid://by8fxqhq87h07" path="res://scenes/treasure.tscn" id="4_jyhfs"]
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D" type="Node2D" unique_id=1278100894]
 
-[node name="player" parent="." instance=ExtResource("1_alwb6")]
+[node name="player" parent="." unique_id=1155642245 instance=ExtResource("1_alwb6")]
 position = Vector2(581, 356)
 
-[node name="Ground" parent="." instance=ExtResource("2_0as0r")]
-position = Vector2(576, 550)
+[node name="Ground" parent="." unique_id=1082155833 instance=ExtResource("2_0as0r")]
+z_index = -1
+position = Vector2(-2, 2)
 
-[node name="Enemy" parent="." instance=ExtResource("3_83fsk")]
+[node name="Enemy" parent="." unique_id=244908415 instance=ExtResource("3_83fsk")]
 position = Vector2(740, 445)
+
+[node name="Treasure" parent="." unique_id=484720234 instance=ExtResource("4_jyhfs")]
+position = Vector2(291, 574)

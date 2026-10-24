@@ -1,7 +1,8 @@
 class_name EnemyState
 extends Node
 
-var enemy: CharacterBody2D
+var enemy: Enemy
+var state_machine: EnemyStateMachine
 
 func enter() -> void:
 	pass
@@ -9,5 +10,8 @@ func enter() -> void:
 func exit() -> void:
 	pass
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
+	pass
+
+func handle_input(_event: InputEvent) -> void:
 	pass

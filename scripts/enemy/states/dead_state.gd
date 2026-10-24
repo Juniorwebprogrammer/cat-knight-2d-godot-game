@@ -1,28 +1,28 @@
 class_name DeadState
 extends EnemyState
 
-@export var death_duration: float = 0.5
-
-var death_timer: float = 0.0
 
 func enter() -> void:
-	print(">>> ENEMY: Dead")
-	death_timer = death_duration
-	enemy.color_rect.color = Color(0.3, 0.3, 0.3)  # Gris
-	# Desactivar hurtbox para no recibir más daño
-	enemy.hurtbox.monitoring = false
-	enemy.hurtbox.monitorable = false
-	# Detener movimiento
-	enemy.velocity = Vector2.ZERO
+	_disable_collisions()
+	enemy.velocity.x = 0.0
+	enemy.animated_sprite.play("Death")
+	enemy.animated_sprite.animation_finished.connect(_on_animation_finished, CONNECT_ONE_SHOT)
+
 
 func update(delta: float) -> void:
-	# Gravedad para que caiga si está en el aire
-	if not enemy.is_on_floor():
-		enemy.velocity.y += enemy.gravity * delta
-	enemy.velocity.x = 0
+	_apply_gravity(delta)
 	enemy.move_and_slide()
 
-	# Esperar y desaparecer
-	death_timer -= delta
-	if death_timer <= 0:
-		enemy.queue_free()
+
+func _disable_collisions() -> void:
+	enemy.hurtbox.set_deferred("monitoring", false)
+	enemy.hurtbox.set_deferred("monitorable", false)
+
+
+func _apply_gravity(delta: float) -> void:
+	if not enemy.is_on_floor():
+		enemy.velocity.y += enemy.gravity * delta
+
+
+func _on_animation_finished() -> void:
+	enemy.queue_free()

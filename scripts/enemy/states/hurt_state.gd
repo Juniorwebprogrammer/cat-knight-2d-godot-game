@@ -1,26 +1,31 @@
 class_name HurtState
 extends EnemyState
 
-@export var hurt_duration: float = 0.4
+@export var hurt_duration: float = 0.3
 
-var hurt_timer: float = 0.0
+var _timer: float = 0.0
 
 func enter() -> void:
-	print(">>> ENEMY: Hurt")
-	hurt_timer = hurt_duration
-	# Flash rojo
-	enemy.color_rect.color = Color.RED
+	_timer = hurt_duration
+	enemy.animated_sprite.play("Hurt")
 
 func update(delta: float) -> void:
-	# Aplicar gravedad y knockback
+	_apply_gravity(delta)
+	_apply_friction(delta)
+	enemy.move_and_slide()
+	_tick_recovery(delta)
+
+
+func _apply_gravity(delta: float) -> void:
 	if not enemy.is_on_floor():
 		enemy.velocity.y += enemy.gravity * delta
 
-	# Frenar el knockback gradualmente
-	enemy.velocity.x = lerpf(enemy.velocity.x, 0, 0.2)
-	enemy.move_and_slide()
 
-	# Contar tiempo de hurt
-	hurt_timer -= delta
-	if hurt_timer <= 0:
-		enemy.state_machine.change_state("Patrol")
+func _apply_friction(delta: float) -> void:
+	enemy.velocity.x = move_toward(enemy.velocity.x, 0.0, 600.0 * delta)
+
+
+func _tick_recovery(delta: float) -> void:
+	_timer -= delta
+	if _timer <= 0.0:
+		state_machine.change_state("Patrol")
