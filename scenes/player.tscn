@@ -16,7 +16,10 @@
 [ext_resource type="Script" uid="uid://ceager2xyc32p" path="res://scripts/player/states/dodge_state.gd" id="11_6sv7q"]
 [ext_resource type="Script" uid="uid://ddmvelv0a7we" path="res://scripts/player/states/take_damage.gd" id="15_a8ls1"]
 [ext_resource type="Script" uid="uid://bfedt1yhmu6du" path="res://scripts/player/states/death.gd" id="16_qfm1y"]
+[ext_resource type="Script" uid="uid://d1moldxf2ujd6" path="res://scripts/player/states/player_attack_state.gd" id="17_4r5pv"]
 [ext_resource type="Script" uid="uid://df4hy4gnim33q" path="res://scripts/player/component/health_component.gd" id="17_qfm1y"]
+[ext_resource type="Script" uid="uid://bheu6wx6bvn6a" path="res://scripts/player/component/attack_component.gd" id="18_fulsm"]
+[ext_resource type="Script" uid="uid://82boc87bntl2" path="res://scripts/player/attacks/sword_slash.gd" id="20_60mlk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_dqkch"]
 shader = ExtResource("1_jgoej")
@@ -351,6 +354,8 @@ animations = [{
 radius = 12.0
 height = 54.0
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p03ti"]
+
 [node name="player" type="CharacterBody2D" unique_id=1709847276 groups=["player"]]
 script = ExtResource("1_40wrj")
 dodge_speed = 500
@@ -361,7 +366,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_dqkch")
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_qlg0r")
-animation = &"idle"
+animation = &"attack1"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=422761967]
 shape = SubResource("CapsuleShape2D_dqkch")
@@ -387,5 +392,22 @@ script = ExtResource("15_a8ls1")
 [node name="Death" type="Node" parent="StateMachine" unique_id=333195556]
 script = ExtResource("16_qfm1y")
 
+[node name="Attack" type="Node" parent="StateMachine" unique_id=1023692470]
+script = ExtResource("17_4r5pv")
+
 [node name="HealthComponent" type="Node" parent="." unique_id=1123433037]
 script = ExtResource("17_qfm1y")
+
+[node name="AttackComponent" type="Node" parent="." unique_id=788781629]
+script = ExtResource("18_fulsm")
+
+[node name="SwordSlash" type="Node" parent="AttackComponent" unique_id=1730927056]
+script = ExtResource("20_60mlk")
+required_treasure = &"sword"
+
+[node name="Hitbox" type="Area2D" parent="AttackComponent/SwordSlash" unique_id=2057841175]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackComponent/SwordSlash/Hitbox" unique_id=909182052]
+shape = SubResource("RectangleShape2D_p03ti")

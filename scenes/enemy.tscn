@@ -244,7 +244,7 @@ shape = SubResource("CapsuleShape2D_aow08")
 debug_color = Color(0.930933, 0.229629, 0.333827, 0.42)
 
 [node name="Hurtbox" type="Area2D" parent="." unique_id=1043056672]
-collision_layer = 2
+collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox" unique_id=904473557]
 position = Vector2(-2.6666665, 5.333333)

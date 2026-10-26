@@ -1,4 +1,3 @@
-# take_damage.gd
 extends State
 
 @export var stun_duration: float = 0.25
@@ -14,13 +13,12 @@ func enter() -> void:
 	player.health.start_invulnerability(invulnerability_time)
 	player.animated_sprite.play("take_damage")
 
+
 func update(delta: float) -> void:
 	_apply_friction(delta)
 	player.move_and_slide()
 	_tick_stun(delta)
 
-
-# --- Funciones privadas auxiliares ---
 
 func _apply_friction(delta: float) -> void:
 	var friction := knockback_speed / stun_duration
@@ -35,5 +33,5 @@ func _tick_stun(delta: float) -> void:
 
 func _finish_stun() -> void:
 	var input_dir := Input.get_vector("MoveLeft", "MoveRight", "Jump", "Dodge")
-	var next_state := "Move" if input_dir != Vector2.ZERO else "Idle"
+	var next_state := "Run" if input_dir != Vector2.ZERO else "Idle"
 	player.state_machine.change_state(next_state)

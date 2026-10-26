@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://b2jqsswb6ovw" path="res://scenes/ground.tscn" id="2_0as0r"]
 [ext_resource type="PackedScene" uid="uid://brirxpefc056b" path="res://scenes/enemy.tscn" id="3_83fsk"]
 [ext_resource type="PackedScene" uid="uid://by8fxqhq87h07" path="res://scenes/treasure.tscn" id="4_jyhfs"]
+[ext_resource type="Texture2D" uid="uid://m0c63fs6nqks" path="res://assets/2 Objects/Pumpkin2.png" id="5_tefeu"]
+[ext_resource type="Texture2D" uid="uid://dudid33d6sd0" path="res://assets/2 Objects/Gemini_Generated_Image_q2silpq2silpq2si-removebg-preview.png" id="6_o6xl0"]
 
 [node name="Node2D" type="Node2D" unique_id=1278100894]
 
@@ -16,6 +18,16 @@ position = Vector2(-2, 2)
 
 [node name="Enemy" parent="." unique_id=244908415 instance=ExtResource("3_83fsk")]
 position = Vector2(740, 445)
+scale = Vector2(2, 2)
 
 [node name="Treasure" parent="." unique_id=484720234 instance=ExtResource("4_jyhfs")]
 position = Vector2(291, 574)
+treasure_id = &"pumpking"
+texture = ExtResource("5_tefeu")
+max_size = 20.0
+
+[node name="Sword" parent="." unique_id=1836858813 instance=ExtResource("4_jyhfs")]
+position = Vector2(489, 550)
+texture = ExtResource("6_o6xl0")
+sway_angle_degrees = 1.0
+sway_duration = 1.0

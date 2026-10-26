@@ -1,9 +1,18 @@
+@tool
 class_name Treasure
 extends Area2D
 
-signal collected(value: int)
+signal collected(id: StringName)
 
-@export var value: int = 10
+@export var treasure_id: StringName = &"sword"
+@export var texture: Texture2D:
+	set(value):
+		texture = value
+		_apply_texture()
+@export_range(8.0, 48.0, 1.0) var max_size: float = 40.0:
+	set(value):
+		max_size = value
+		_apply_texture()
 @export var sway_angle_degrees: float = 12.0
 @export var sway_duration: float = 0.8
 
@@ -15,8 +24,28 @@ var _sway_tween: Tween
 
 
 func _ready() -> void:
+	_apply_texture()
+	if Engine.is_editor_hint():
+		return
 	body_entered.connect(_on_body_entered)
 	_start_sway()
+
+
+func _apply_texture() -> void:
+	if not sprite or not collision_shape or not texture:
+		return
+	var factor := max_size / maxf(texture.get_width(), texture.get_height())
+	sprite.texture = texture
+	sprite.scale = Vector2(factor, factor)
+	sprite.offset = Vector2(0.0, -texture.get_height() / 2.0)
+	_fit_collision(texture.get_size() * factor)
+
+
+func _fit_collision(size: Vector2) -> void:
+	var rect := RectangleShape2D.new()
+	rect.size = size
+	collision_shape.shape = rect
+	collision_shape.position = Vector2(0.0, -size.y / 2.0)
 
 
 func _start_sway() -> void:
@@ -51,7 +80,8 @@ func _collect() -> void:
 	_is_collected = true
 	_stop_sway()
 	_disable_collision()
-	collected.emit(value)
+	Treasures.unlock(treasure_id)
+	collected.emit(treasure_id)
 	queue_free()
 
 

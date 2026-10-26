@@ -1,9 +1,11 @@
 class_name JumpState
 extends State
 
+
 func enter() -> void:
 	player.animated_sprite.play("jump")
 	player.velocity.y = player.jump_force
+
 
 func update(delta: float) -> void:
 	player.velocity.y += player.gravity * delta
@@ -28,7 +30,3 @@ func update(delta: float) -> void:
 			player.state_machine.change_state("Run")
 		else:
 			player.state_machine.change_state("Idle")
-
-func handle_input(event: InputEvent) -> void:
-	if event.is_action_pressed("Attack1"):
-		player.state_machine.change_state("Attack1")

@@ -1,8 +1,10 @@
 class_name RunState
 extends State
 
+
 func enter() -> void:
 	player.animated_sprite.play("run")
+
 
 func update(delta: float) -> void:
 	if not player.is_on_floor():
@@ -28,8 +30,11 @@ func update(delta: float) -> void:
 	elif direction_x == 0:
 		player.state_machine.change_state("Idle")
 
+
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("Jump") and player.is_on_floor():
 		player.state_machine.change_state("Jump")
-	if event.is_action_pressed("Dodge") and player.is_on_floor():
+	elif event.is_action_pressed("Dodge") and player.is_on_floor():
 		player.state_machine.change_state("Dodge")
+	else:
+		try_attack(event)
