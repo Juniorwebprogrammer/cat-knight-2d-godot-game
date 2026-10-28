@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://csybhky8dq2au" path="res://scenes/player.tscn" id="7_8gbjj"]
 [ext_resource type="PackedScene" uid="uid://brirxpefc056b" path="res://scenes/enemy.tscn" id="8_2c1ag"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hokwi"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mi8v4"]
 texture = ExtResource("1_pybca")
 2:1/0 = 0
@@ -23,6 +25,7 @@ texture = ExtResource("1_pybca")
 11:1/0 = 0
 12:1/0 = 0
 13:1/0 = 0
+13:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.17985916, 0.35971832, 8, -8, 8, 8, -8, 8)
 2:2/0 = 0
 2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 3:2/0 = 0
@@ -224,11 +227,17 @@ texture = ExtResource("1_pybca")
 10:10/0 = 0
 11:10/0 = 0
 12:10/0 = 0
+12:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.35971642, 0.35971832, 8, -8, 8, 8, -8, 8, -0.5395756, 0.35971832)
 13:10/0 = 0
+13:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8, -8, 0.5395775)
 14:10/0 = 0
+14:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8, -8, 0.5395775)
 15:10/0 = 0
+15:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8, -8, 0.5395775)
 16:10/0 = 0
+16:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8, -8, 0.5395775)
 17:10/0 = 0
+17:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0.8992939, -1.0791512, 8, 8, -8, 8, -8, 0.35971832)
 18:10/0 = 0
 19:10/0 = 0
 0:11/0 = 0
@@ -247,13 +256,21 @@ texture = ExtResource("1_pybca")
 9:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 10:11/0 = 0
 11:11/0 = 0
+11:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.35971642, 0.35971832, 8, -8, 8, 8, -8, 8, -0.5395756, 0.35971832)
 12:11/0 = 0
+12:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 13:11/0 = 0
+13:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 14:11/0 = 0
+14:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 15:11/0 = 0
+15:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 16:11/0 = 0
+16:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 17:11/0 = 0
+17:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 18:11/0 = 0
+18:11/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0.8992939, -1.0791512, 8, 8, -8, 8, -8, 0.35971832)
 19:11/0 = 0
 2:12/0 = 0
 3:12/0 = 0
@@ -262,7 +279,7 @@ texture = ExtResource("1_pybca")
 6:12/0 = 0
 7:12/0 = 0
 10:12/0 = 0
-10:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+10:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-0.35971642, 0.17985916, 8, -8, 8, 8, -8, 8)
 11:12/0 = 0
 11:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 12:12/0 = 0
@@ -278,8 +295,9 @@ texture = ExtResource("1_pybca")
 17:12/0 = 0
 17:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 18:12/0 = 0
+18:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 19:12/0 = 0
-19:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+19:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 0.8992939, -1.0791512, 8, 8, -8, 8, -8, 0.35971832)
 2:13/0 = 0
 3:13/0 = 0
 4:13/0 = 0
@@ -303,6 +321,7 @@ texture = ExtResource("1_pybca")
 17:13/0 = 0
 17:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 18:13/0 = 0
+18:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 19:13/0 = 0
 19:13/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 14:14/0 = 0
@@ -478,6 +497,7 @@ texture = ExtResource("1_pybca")
 
 [sub_resource type="TileSet" id="TileSet_p03ti"]
 physics_layer_0/collision_layer = 1
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_hokwi")
 sources/0 = SubResource("TileSetAtlasSource_mi8v4")
 
 [node name="Ground" type="Node" unique_id=1562905071]

@@ -14,12 +14,14 @@ func init(enemy: Enemy, initial_state: String) -> void:
 		if child is EnemyState:
 			child.enemy = enemy
 			child.state_machine = self
+	print(initial_state)
 	change_state(initial_state)
 
 func change_state(new_state: String) -> void:
 	if current_state:
 		current_state.exit()
 	current_state = states[new_state]
+	print(current_state)
 	current_state.enter()
 
 func update(delta: float) -> void:

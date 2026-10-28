@@ -6,8 +6,8 @@ extends EnemyState
 
 var _time_left: float = 0.0
 
-
 func enter() -> void:
+	print("pursue enter")
 	refresh()
 
 
@@ -45,6 +45,5 @@ func _tick_timer(delta: float) -> void:
 		state_machine.change_state("Patrol")
 
 func _attack_if_player_in_range() -> void:
-	print("can_attack: ", enemy.can_attack(), " | in_range: ", enemy.is_player_in_attack_range())
 	if enemy.can_attack() and enemy.is_player_in_attack_range():
 		state_machine.change_state("Attack")

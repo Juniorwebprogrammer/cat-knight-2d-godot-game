@@ -233,10 +233,9 @@ texture_filter = 1
 position = Vector2(4.5, 0)
 scale = Vector2(0.9166667, 1)
 sprite_frames = SubResource("SpriteFrames_xwavj")
-animation = &"Attack"
+animation = &"Walk"
 autoplay = "Idle"
-frame = 5
-frame_progress = 1.0
+frame_progress = 0.5510705
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1430132257]
 position = Vector2(-2, 6)

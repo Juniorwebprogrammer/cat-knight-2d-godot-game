@@ -1,50 +1,56 @@
 class_name PatrolState
 extends EnemyState
 
-@export var patrol_range: float = 150.0  # Distancia a cada lado
+@export var patrol_range: float = 150.0
 
 var direction: float = 1.0
 var start_x: float = 0.0
+
 
 func enter() -> void:
 	start_x = enemy.home_x
 	direction = enemy.get_facing_direction()
 
+
 func update(delta: float) -> void:
 	_change_animation()
-	_check_if_enemy_is_on_floor(delta)
+	_apply_gravity(delta)
 	_patrol()
-	_check_for_player()
+	_apply_patrol_velocity()
 	enemy.move_and_slide()
+	_turn_if_blocked_by_wall()
+	_check_for_player()
 
-func _check_for_player() -> void:
-	if enemy.is_player_detected():
-		state_machine.change_state("Pursue")
 
 func _change_animation() -> void:
 	enemy.animated_sprite.play("Walk")
 
-func _check_if_enemy_is_on_floor(delta: float) -> void:
+
+func _apply_gravity(delta: float) -> void:
 	if not enemy.is_on_floor():
 		enemy.velocity.y += enemy.gravity * delta
+
+
+func _apply_patrol_velocity() -> void:
 	enemy.velocity.x = direction * enemy.patrol_speed
+
 
 func _patrol() -> void:
 	if enemy.global_position.x >= start_x + patrol_range:
 		direction = -1.0
-		enemy.animated_sprite.flip_h = true
 	elif enemy.global_position.x <= start_x - patrol_range:
 		direction = 1.0
-		enemy.animated_sprite.flip_h = false
 	enemy.face_direction(direction)
 
-func _direction_towards_patrol_zone() -> float:
-	var offset := enemy.global_position.x - start_x
-	if absf(offset) > patrol_range:
-		return -signf(offset)
-	return enemy.get_facing_direction()
 
-func _on_detection_area_body_entered(body: Node2D) -> void:
-	if body.is_in_group("player"):
+func _turn_if_blocked_by_wall() -> void:
+	if not enemy.is_on_wall():
+		return
+	# La normal de la pared apunta hacia fuera, así que siempre nos aleja de ella
+	direction = signf(enemy.get_wall_normal().x)
+	enemy.face_direction(direction)
+
+
+func _check_for_player() -> void:
+	if enemy.is_player_detected():
 		state_machine.change_state("Pursue")
-		
